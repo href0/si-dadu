@@ -21,6 +21,23 @@
                                 <th>Tanggal Akhir</th>
                                 <th>Lulus</th>
                                 <th>Tidak Lulus</th>
+                                <th>Kompeten</th>
+                                <th>Tidak Kompeten</th>
+                                <th>Tidak Uji Kompeten</th>
+                                <th>Lainnya</th>
+                                <th>SD</th>
+                                <th>SMP</th>
+                                <th>SMA</th>
+                                <th>SMK</th>
+                                <th>Diploma</th>
+                                <th>PT</th>
+                                <th>Total Latar Belakang Pendidikan</th>
+                                <th>Laki-Laki</th>
+                                <th>Perempuan</th>
+                                <th>Total Jenis Kelamin</th>
+                                <th>Mandiri</th>
+                                <th>Industri</th>
+                                <th>Sumber Dana</th>
                             </tr>
                         </thead>
                         <tbody>

@@ -318,6 +318,66 @@
               });
           })
       </script>
+
+  <?php elseif ($page == 'User' && $sub_page == 'Tambah') : ?>
+      <script>
+          $(function() {
+
+              $('#form').validate({
+                  rules: {
+                      username: {
+                          required: true,
+                      },
+                      password: {
+                          required: true,
+                      },
+                      retype_password: {
+                          equalTo: "#password",
+                      },
+                      nama: {
+                          required: true,
+                      },
+                      email: {
+                          required: true,
+                          email: true,
+                      },
+                  },
+                  messages: {
+                      username: {
+                          required: "Silahkan masukkan username",
+                      },
+                      password: {
+                          required: "Silahkan masukkan password",
+                      },
+                      retype_password: {
+                          equalTo: "Password tidak cocok",
+                      },
+                      email: {
+                          required: "Silahkan pilih pelatihan",
+                      },
+                      nama: {
+                          required: "Silahkan masukkan nama lengkap",
+                      },
+                      email: {
+                          required: "Silahkan masukkan email",
+                          email: "Silahkan masukkan format email yang benar",
+                      },
+
+                  },
+                  errorElement: 'span',
+                  errorPlacement: function(error, element) {
+                      error.addClass('invalid-feedback');
+                      element.closest('.form-group').append(error);
+                  },
+                  highlight: function(element, errorClass, validClass) {
+                      $(element).addClass('is-invalid');
+                  },
+                  unhighlight: function(element, errorClass, validClass) {
+                      $(element).removeClass('is-invalid');
+                  }
+              });
+          });
+      </script>
   <?php endif ?>
   <script>
       $(function() {

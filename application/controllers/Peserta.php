@@ -6,11 +6,13 @@ class Peserta extends CI_Controller
     public function __construct()
     {
         parent::__construct();
+        is_logged_in();
         //Do your magic here
         $this->load->model('model_peserta', 'peserta');
         $this->load->model('model_satuankerja', 'satuankerja');
         $this->load->model('model_pelatihan', 'pelatihan');
         $this->load->model('model_kejuruan', 'kejuruan');
+        $this->login_nama = $this->session->userdata('auth')['nama'];
     }
     public function index()
     {
@@ -18,6 +20,7 @@ class Peserta extends CI_Controller
             'title'         => 'SI Dadu',
             'page'          => 'Peserta',
             'sub_page'      => '',
+            'sidebar_nama'   => $this->login_nama,
             'table'         => $this->peserta->getAll(),
             'content'       => 'peserta/index'
         ];
@@ -45,6 +48,7 @@ class Peserta extends CI_Controller
                 'title'         => 'SI Dadu',
                 'page'          => 'Peserta',
                 'sub_page'      => 'Tambah',
+                'sidebar_nama'   => $this->login_nama,
                 'satuan_kerja'  => $this->satuankerja->getAll(),
                 'content'       => 'peserta/form'
             ];

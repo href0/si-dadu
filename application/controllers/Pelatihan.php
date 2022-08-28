@@ -8,8 +8,10 @@ class Pelatihan extends CI_Controller
     public function __construct()
     {
         parent::__construct();
+        is_logged_in();
         $this->load->model('model_pelatihan', 'pelatihan');
         $this->load->model('model_satuankerja', 'satuankerja');
+        $this->login_nama = $this->session->userdata('auth')['nama'];
     }
 
 
@@ -19,6 +21,7 @@ class Pelatihan extends CI_Controller
             'title'         => 'SI Dadu',
             'page'          => 'Jenis Pelatihan',
             'sub_page'      => '',
+            'sidebar_nama'   => $this->login_nama,
             'table'         => $this->pelatihan->getAll(),
             'content'       => 'pelatihan/index'
         ];
@@ -34,6 +37,7 @@ class Pelatihan extends CI_Controller
                 'title'         => 'SI Dadu',
                 'page'          => 'Jenis Pelatihan',
                 'sub_page'      => 'Tambah',
+                'sidebar_nama'   => $this->login_nama,
                 'satuan_kerja'  => $this->satuankerja->getAll(),
                 'content'       => 'pelatihan/form'
             ];
@@ -87,6 +91,7 @@ class Pelatihan extends CI_Controller
             'title'         => 'SI Dadu',
             'page'          => 'Laporan Pelatihan',
             'sub_page'      => '',
+            'sidebar_nama'   => $this->login_nama,
             // 'table'         => $this->pelatihan->getAll(),
             'content'       => 'pelatihan/laporan'
         ];

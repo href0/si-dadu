@@ -7,7 +7,9 @@ class SatuanKerja  extends CI_Controller
     public function __construct()
     {
         parent::__construct();
+        is_logged_in();
         $this->load->model('model_satuankerja', 'satuankerja');
+        $this->login_nama = $this->session->userdata('auth')['nama'];
     }
 
     public function index()
@@ -16,6 +18,7 @@ class SatuanKerja  extends CI_Controller
             'title'         => 'SI Dadu',
             'page'          => 'Satuan Kerja',
             'sub_page'      => '',
+            'sidebar_nama'   => $this->login_nama,
             'table'         => $this->satuankerja->getAll(),
             'content'       => 'satuan_kerja/index'
         ];
@@ -29,6 +32,7 @@ class SatuanKerja  extends CI_Controller
             $data = [
                 'title'         => 'SI Dadu',
                 'page'          => 'Satuan Kerja',
+                'sidebar_nama'   => $this->login_nama,
                 'sub_page'      => 'Tambah',
                 'content'       => 'satuan_kerja/form'
             ];

@@ -7,7 +7,9 @@ class Kejuruan extends CI_Controller
     public function __construct()
     {
         parent::__construct();
+        is_logged_in();
         $this->load->model('model_kejuruan', 'kejuruan');
+        $this->login_nama = $this->session->userdata('auth')['nama'];
     }
 
     public function index()
@@ -16,6 +18,7 @@ class Kejuruan extends CI_Controller
             'title'         => 'SI Dadu',
             'page'          => 'Kejuruan',
             'sub_page'      => '',
+            'sidebar_nama'   => $this->login_nama,
             'table'         => $this->kejuruan->getAll(),
             'content'       => 'kejuruan/index'
         ];
@@ -30,6 +33,7 @@ class Kejuruan extends CI_Controller
                 'title'         => 'SI Dadu',
                 'page'          => 'Kejuruan',
                 'sub_page'      => 'Tambah',
+                'sidebar_nama'   => $this->login_nama,
                 'content'       => 'kejuruan/form'
             ];
             $this->load->view('template/master', $data);
