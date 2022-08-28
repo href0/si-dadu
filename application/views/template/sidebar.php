@@ -31,7 +31,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="<?= base_url('') ?>" class="nav-link<?= $page == 'Laporan Pelatihan' ? ' active' : '' ?>">
+                    <a href="<?= base_url('pelatihan/laporan') ?>" class="nav-link<?= $page == 'Laporan Pelatihan' ? ' active' : '' ?>">
                         <i class="nav-icon fas fa-users"></i>
                         <p>
                             Laporan Pelatihan

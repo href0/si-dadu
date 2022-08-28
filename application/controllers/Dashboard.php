@@ -8,7 +8,7 @@ class Dashboard extends CI_Controller
         $data = [
             'title'         => 'Padaidi Corp',
             'page'          => 'Dashboard',
-            // 'sub_page'      => 'Tes',
+            'sub_page'      => '',
             'content'       => 'dashboard/index'
         ];
         $this->load->view('template/master', $data);

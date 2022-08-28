@@ -24,6 +24,7 @@ class Pelatihan extends CI_Controller
         ];
         $this->load->view('template/master', $data);
     }
+
     public function add()
     {
         $this->form_validation->set_rules('pelatihan', 'Pelatihan', 'trim|required');
@@ -78,5 +79,17 @@ class Pelatihan extends CI_Controller
             );
             redirect('pelatihan');
         }
+    }
+
+    public function laporan()
+    {
+        $data = [
+            'title'         => 'SI Dadu',
+            'page'          => 'Laporan Pelatihan',
+            'sub_page'      => '',
+            // 'table'         => $this->pelatihan->getAll(),
+            'content'       => 'pelatihan/laporan'
+        ];
+        $this->load->view('template/master', $data);
     }
 }
