@@ -35,7 +35,8 @@ class Kejuruan extends CI_Controller
             $this->load->view('template/master', $data);
         } else {
             $data = [
-                'kejuruan' => $this->input->post('kejuruan')
+                'kejuruan'          => $this->input->post('kejuruan'),
+                'id_satuan_kerja'   => 1
             ];
             $insert =  $this->kejuruan->add($data);
             if ($insert > 0) {
