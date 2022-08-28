@@ -9,7 +9,7 @@
                     <div class="card-body">
                         <div class="form-group">
                             <label for="satuan_kerja">Satuan Kerja</label>
-                            <input type="text" name="satuan_kerja" class="form-control" id="satuan_kerja" placeholder="Masukkan nama kejuruan" autofocus>
+                            <input type="text" name="satuan_kerja" class="form-control" id="satuan_kerja" placeholder="Masukkan satuan kerja" autofocus>
                         </div>
                     </div>
 
