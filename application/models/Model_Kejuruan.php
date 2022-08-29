@@ -10,6 +10,13 @@ class Model_Kejuruan extends CI_Model
             ->get('kejuruan')->result_array();
     }
 
+    public function getBySatkerId($id)
+    {
+        return $this->db
+            ->get_where('kejuruan', ['id_satuan_kerja' => $id])
+            ->row_array();
+    }
+
     public function add($data)
     {
         return $this->db

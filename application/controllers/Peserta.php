@@ -131,7 +131,8 @@ class Peserta extends CI_Controller
             if ($this->input->post('satuan_kerja_id') == '2') {
                 $output = '<option value="" selected="true" disabled>-- Pilih Pelatihan --</option>';
                 $satuan_kerja_id = $this->input->post('satuan_kerja_id');
-                foreach ($this->pelatihan->getBySatuanKerjaId($satuan_kerja_id) as $row) {
+                $satker = $this->kejuruan->getBySatkerId($satuan_kerja_id);
+                foreach ($this->pelatihan->getByKejuruanId($satker['id_kejuruan']) as $row) {
                     $output .= '<option value="' . $row['id_pelatihan'] . '">' . $row['pelatihan'] . '</option>';
                 }
                 echo $output;
