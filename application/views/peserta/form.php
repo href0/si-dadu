@@ -38,7 +38,7 @@
                             </div>
                             <div class="col-md-6 pelatihan" style="display: none;">
                                 <div class="form-group">
-                                    <label for="kejuruan">Pelatihan</label>
+                                    <label for="pelatihan">Pelatihan</label>
                                     <select class="form-control<?= form_error('pelatihan') ? '  is-invalid' : '' ?>" id="pelatihan" name="pelatihan">
                                         <option value="" selected="true" disabled>-- Pilih Pelatihan --</option>
                                     </select>
