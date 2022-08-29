@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Waktu pembuatan: 28 Agu 2022 pada 23.03
+-- Waktu pembuatan: 29 Agu 2022 pada 13.09
 -- Versi server: 5.7.33
 -- Versi PHP: 7.4.19
 
@@ -41,7 +41,11 @@ INSERT INTO `kejuruan` (`id_kejuruan`, `id_satuan_kerja`, `kejuruan`) VALUES
 (1, 2, 'Disnaker'),
 (2, 1, 'Garment Apparel'),
 (3, 1, 'Tata Kecantikan'),
-(4, 1, 'Processing');
+(4, 1, 'Processing'),
+(12, 1, 'TIK'),
+(13, 1, 'Teknik Listrik'),
+(14, 1, 'Otomotif'),
+(15, 1, 'Refrigerasi');
 
 -- --------------------------------------------------------
 
@@ -65,7 +69,16 @@ CREATE TABLE `pelatihan` (
 INSERT INTO `pelatihan` (`id_pelatihan`, `id_kejuruan`, `pelatihan`, `tgl_awal`, `tgl_akhir`, `lokasi`) VALUES
 (1, 2, 'Asisten Pembuat Pakaian (2 Paket)', '2021-03-02', '2022-04-13', 'Simpang rimbo'),
 (2, 1, 'Disnaker 1', '2022-07-04', '2022-08-18', 'kota baru'),
-(3, 1, 'Disnaker 2', '2022-08-01', '2022-08-26', 'jelutung');
+(3, 1, 'Disnaker 2', '2022-08-01', '2022-08-26', 'jelutung'),
+(5, 1, 'Disnaker 3', '2022-08-01', '2022-08-19', 'jambi'),
+(6, 12, 'Operasi Komputer', '2021-03-22', '2021-04-20', 'jambi'),
+(7, 2, 'Pembuatan Hiasan Busana Dengan Mesin Bondir Manual', '2021-05-25', '2021-07-03', 'jambi'),
+(8, 4, 'Pembuatan Roti dan Kue', '2021-05-25', '2021-06-16', 'jambi'),
+(9, 3, 'Junior Beautician', '2021-03-22', '2021-04-20', 'jambi'),
+(10, 3, 'Yunior Stylist', '2021-05-25', '2021-06-22', 'jambi'),
+(11, 13, 'Pemasangan Instalasi Listrik Bangunan Sederhana', '2021-06-23', '2021-07-31', 'jambi'),
+(12, 14, 'Service Sepeda Motor Konvensional', '2021-06-23', '2021-08-14', 'jambi'),
+(13, 15, 'Perawatan AC Split', '2021-06-23', '2021-07-31', 'jambi');
 
 -- --------------------------------------------------------
 
@@ -91,6 +104,13 @@ CREATE TABLE `peserta` (
   `sertifikasi` enum('Kompeten','Tidak Kompeten','Tidak Uji Kompetensi','Lainnya') DEFAULT NULL,
   `penyerapan_lulusan` enum('Mandiri','Industri') DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `peserta`
+--
+
+INSERT INTO `peserta` (`id_peserta`, `id_pelatihan`, `nik`, `nama`, `jenis_kelamin`, `kecamatan`, `kelurahan`, `rw-dusun`, `rt`, `detail_alamat`, `no_hp`, `email`, `foto`, `hasil_pelatihan`, `sertifikasi`, `penyerapan_lulusan`) VALUES
+(11, 2, '0923842390423', 'Rizki', 'Laki-Laki', 'Pal merah', 'Talang bakung', '2', '20', 'Jl santoso', '0982092833', 'rizki@gmail.com', 'default.jpg', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -174,19 +194,19 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT untuk tabel `kejuruan`
 --
 ALTER TABLE `kejuruan`
-  MODIFY `id_kejuruan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id_kejuruan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT untuk tabel `pelatihan`
 --
 ALTER TABLE `pelatihan`
-  MODIFY `id_pelatihan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_pelatihan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT untuk tabel `peserta`
 --
 ALTER TABLE `peserta`
-  MODIFY `id_peserta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id_peserta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT untuk tabel `satuan_kerja`
