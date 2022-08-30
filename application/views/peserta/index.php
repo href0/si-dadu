@@ -38,8 +38,9 @@
                                     <td><?= $row['tgl_awal'] ?></td>
                                     <td><?= $row['tgl_akhir'] ?></td>
                                     <td>
-                                        <a href="" class="btn btn-info btn-sm"><i class="fas fa-pencil-alt"></i> Ubah</a>
+                                        <a href="<?= base_url('peserta/edit/' . $row['id_peserta']) ?>" class="btn btn-info btn-sm"><i class="fas fa-pencil-alt"></i> Ubah</a>
                                         <a href="<?= base_url('peserta/delete/' . $row['id_peserta']) ?>" onclick="return confirm('Apa anda yakin ingin menghapus data peserta <?= $row['nama'] ?>')" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i> Hapus</a>
+                                        <a href="<?= base_url('peserta/nilai/' . $row['id_peserta']) ?>" class="btn btn-success btn-sm"><i class="fas fa-plus"></i> Nilai</a>
                                     </td>
                                 </tr>
                             <?php

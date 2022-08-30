@@ -105,7 +105,7 @@
           });
       </script>
 
-  <?php elseif ($page == 'Peserta' && $sub_page == 'Tambah') : ?>
+  <?php elseif (($page == 'Peserta' && $sub_page == 'Tambah') || ($page == 'Peserta' && $sub_page == 'Edit')) : ?>
       <script>
           $(function() {
 

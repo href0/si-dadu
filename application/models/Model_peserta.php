@@ -19,6 +19,22 @@ class Model_peserta extends CI_Model
             ->insert('peserta', $data);
     }
 
+    public function edit($data, $id)
+    {
+        return $this->db
+            ->where('id_peserta', $id)
+            ->update('peserta', $data);
+    }
+
+    public function getById($id)
+    {
+        return $this->db
+            ->join('pelatihan', 'pelatihan.id_pelatihan = peserta.id_pelatihan')
+            ->join('kejuruan', 'kejuruan.id_kejuruan = pelatihan.id_kejuruan')
+            ->join('satuan_kerja', 'satuan_kerja.id_satuan_kerja = kejuruan.id_satuan_kerja')
+            ->get_where('peserta', ['id_peserta' => $id])->row_array();
+    }
+
     public function delete($id)
     {
         return $this->db

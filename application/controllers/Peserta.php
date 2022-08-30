@@ -32,6 +32,7 @@ class Peserta extends CI_Controller
         if ($this->input->post('satuan_kerja') == '1') {
             $this->form_validation->set_rules('kejuruan', 'kejuruan', 'trim|required');
         }
+        $this->form_validation->set_rules('pelatihan', 'Pelatihan', 'trim|required');
         $this->form_validation->set_rules('nik', 'NIK', 'trim|required');
         $this->form_validation->set_rules('nama', 'Nama', 'trim|required');
         $this->form_validation->set_rules('email', 'Email', 'trim|required');
@@ -83,7 +84,7 @@ class Peserta extends CI_Controller
                 'jenis_kelamin'     => $this->input->post('jenis_kelamin'),
                 'kecamatan'         => $this->input->post('kecamatan'),
                 'kelurahan'         => $this->input->post('kelurahan'),
-                'rw-dusun'          => $this->input->post('pelatihan'),
+                'rw-dusun'          => $this->input->post('rwdusun'),
                 'rt'                => $this->input->post('rt'),
                 'detail_alamat'     => $this->input->post('detail_alamat'),
                 'no_hp'             => $this->input->post('no_hp'),
@@ -104,6 +105,108 @@ class Peserta extends CI_Controller
                 );
                 redirect('peserta');
             }
+        }
+    }
+
+    public function edit($id)
+    {
+        $this->form_validation->set_rules('nik', 'NIK', 'trim|required');
+        $this->form_validation->set_rules('nama', 'Nama', 'trim|required');
+        $this->form_validation->set_rules('email', 'Email', 'trim|required');
+        $this->form_validation->set_rules('no_hp', 'No handphone', 'trim|required');
+        $this->form_validation->set_rules('jenis_kelamin', 'Jenis Kelamin', 'trim|required');
+        $this->form_validation->set_rules('kecamatan', 'Kecamatan', 'trim|required');
+        $this->form_validation->set_rules('kelurahan', 'Kelurahan', 'trim|required');
+        $this->form_validation->set_rules('rwdusun', 'RW/Dusun', 'trim|required');
+        $this->form_validation->set_rules('rt', 'RT', 'trim|required');
+        $this->form_validation->set_rules('detail_alamat', 'Detail Alamat', 'trim|required');
+
+        if ($this->form_validation->run() == FALSE) {
+            $data = [
+                'title'         => 'SI Dadu',
+                'page'          => 'Peserta',
+                'sub_page'      => 'Edit',
+                'sidebar_nama'   => $this->login_nama,
+                'peserta'       => $this->peserta->getById($id),
+                'satuan_kerja'  => $this->satuankerja->getAll(),
+                'content'       => 'peserta/edit'
+            ];
+            $this->load->view('template/master', $data);
+        } else {
+            $peserta = $this->peserta->getById($id);
+            $foto = $peserta['foto'];
+            if ($_FILES['foto']['size'] != 0) {
+                $generate_name_utama = $this->input->post('nama') . '-' . date('Y') . '-' . time() . rand();
+                $config['upload_path']   = './assets/foto/';
+                $config['allowed_types'] = 'gif|png|jpg|jpeg'; //mencegah upload backdor
+                $config['max_size']      = '4000';
+                $config['file_name']      = $generate_name_utama;
+
+                $this->load->library('upload', $config);
+
+                if (!$this->upload->do_upload('foto')) {
+                    $error = $this->upload->display_errors();
+                    $this->session->set_flashdata(
+                        'message',
+                        '<div class="alert alert-danger" role="alert">' . $error . '</div>'
+                    );
+                    redirect('peserta/add');
+                    $this->load->view('upload_form', $error);
+                } else {
+                    $peserta['foto'] != 'default.png' ?  unlink('assets/foto/' . $peserta['foto']) : false;
+                    $foto = $this->upload->data('file_name');
+                }
+            }
+            $data = [
+                'nik'               => $this->input->post('nik'),
+                'nama'              => $this->input->post('nama'),
+                'jenis_kelamin'     => $this->input->post('jenis_kelamin'),
+                'kecamatan'         => $this->input->post('kecamatan'),
+                'kelurahan'         => $this->input->post('kelurahan'),
+                'rw-dusun'          => $this->input->post('rwdusun'),
+                'rt'                => $this->input->post('rt'),
+                'detail_alamat'     => $this->input->post('detail_alamat'),
+                'no_hp'             => $this->input->post('no_hp'),
+                'email'             => $this->input->post('email'),
+                'foto'              => $foto,
+            ];
+            $update = $this->peserta->edit($data, $id);
+            if ($update > 0) {
+                $this->session->set_flashdata(
+                    'message',
+                    '<div class="alert alert-success" role="alert">Berhasil update data peserta</div>'
+                );
+                redirect('peserta');
+            } else {
+                $this->session->set_flashdata(
+                    'message',
+                    '<div class="alert alert-danger" role="alert">Terjadi kesalahan, silahkan hub admin</div>'
+                );
+                redirect('peserta');
+            }
+        }
+    }
+
+    public function nilai($id)
+    {
+        $peserta = $this->peserta->getById($id);
+        $this->form_validation->set_rules('sertifikasi', 'Sertifikasi', 'trim|required');
+
+        if ($this->form_validation->run() == FALSE) {
+            $data = [
+                'title'         => 'SI Dadu',
+                'page'          => 'Peserta',
+                'sub_page'      => 'Edit',
+                'sidebar_nama'   => $this->login_nama,
+                'peserta'       => $peserta,
+                'content'       => 'peserta/nilai'
+            ];
+            $this->load->view('template/master', $data);
+        } else {
+            echo '<pre>';
+            print_r($this->input->post());
+            echo '</pre>';
+            die;
         }
     }
 
