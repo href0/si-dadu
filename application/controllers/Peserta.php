@@ -169,6 +169,9 @@ class Peserta extends CI_Controller
                 'no_hp'             => $this->input->post('no_hp'),
                 'email'             => $this->input->post('email'),
                 'foto'              => $foto,
+                'tgl_awal'          => $this->input->post('tgl_awal'),
+                'tgl_akhir'         => $this->input->post('tgl_akhir'),
+                'lokasi'            => $this->input->post('lokasi'),
             ];
             $update = $this->peserta->edit($data, $id);
             if ($update > 0) {

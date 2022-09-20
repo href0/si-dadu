@@ -45,10 +45,7 @@ class Pelatihan extends CI_Controller
         } else {
             $data = [
                 'id_kejuruan' => $this->input->post('kejuruan') ?? 1,
-                'pelatihan'   => $this->input->post('pelatihan'),
-                'tgl_awal'   => $this->input->post('tgl_awal'),
-                'tgl_akhir'   => $this->input->post('tgl_akhir'),
-                'lokasi'   => $this->input->post('lokasi'),
+                'pelatihan'   => $this->input->post('pelatihan')
             ];
             $insert = $this->pelatihan->add($data);
             if ($insert > 0) {

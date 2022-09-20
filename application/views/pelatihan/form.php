@@ -37,7 +37,7 @@
                             <label for="pelatihan">Pelatihan</label>
                             <input type="text" name="pelatihan" class="form-control" id="pelatihan" placeholder="Masukkan nama pelatihan">
                         </div>
-                        <div class="form-group">
+                        <!-- <div class="form-group">
                             <label for="tgl_awal">Tanggal Awal</label>
                             <input type="date" name="tgl_awal" class="form-control" id="tgl_awal">
                         </div>
@@ -51,7 +51,7 @@
                             <?php if (form_error('lokasi')) : ?>
                                 <div class="invalid-feedback"><?= form_error('lokasi') ?></div>
                             <?php endif ?>
-                        </div>
+                        </div> -->
                     </div>
 
                     <div class="card-footer">

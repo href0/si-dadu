@@ -138,6 +138,28 @@
                                     <?php endif ?>
                                 </div>
                             </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="tgl_awal">Tanggal Awal</label>
+                                    <input type="date" name="tgl_awal" class="form-control" id="tgl_awal">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="tgl_akhir">Tanggal Akhir</label>
+                                    <input type="date" name="tgl_akhir" class="form-control" id="tgl_akhir">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="lokasi">Lokasi</label>
+                                    <textarea name="lokasi" class="form-control<?= form_error('lokasi') ? '  is-invalid' : '' ?>" rows="4" placeholder="Masukkan detail lokasi"></textarea>
+                                    <?php if (form_error('lokasi')) : ?>
+                                        <div class="invalid-feedback"><?= form_error('lokasi') ?></div>
+                                    <?php endif ?>
+                                </div>
+                            </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="detail_alamat">Detail Alamat</label>
@@ -148,6 +170,8 @@
                                 </div>
                             </div>
                         </div>
+
+
 
                         <div class="form-group row">
                             <div class="col-sm-1 col-form-label">

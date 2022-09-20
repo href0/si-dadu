@@ -71,7 +71,6 @@
                             </div>
 
                         </li> -->
-
                         <li class="user-footer">
                             <div class="float-left">
                                 <a href="#" class="btn btn-default btn-flat">Profile</a>
@@ -81,9 +80,7 @@
                             </div>
                         </li>
                     </ul>
-
                 </li>
-
 
                 <li class="nav-item">
                     <a class="nav-link" data-widget="fullscreen" href="#" role="button">
@@ -97,5 +94,6 @@
                 </li> -->
             </ul>
         </nav>
+
 
         <!-- /.navbar -->
