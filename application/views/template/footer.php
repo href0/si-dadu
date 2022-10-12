@@ -421,10 +421,10 @@
                       //       columns: columns
                       //   }
                   },
-                  {
-                      extend: 'pdf',
-                      title: '<?= $title   ?>',
-                  },
+                  //   {
+                  //       extend: 'pdf',
+                  //       title: '<?= $title   ?>',
+                  //   },
                   {
                       extend: 'excel',
                       title: '<?= $title   ?>',

@@ -37,7 +37,7 @@
                                     <td><?= date_format(new DateTime($row['tgl_akhir']), 'd M Y') ?></td>
                                     <td><?= $row['lokasi'] ?></td>
                                     <td>
-                                        <a href="" class="btn btn-info btn-sm"><i class="fas fa-pencil-alt"></i> Ubah</a>
+                                        <a href="<?= base_url('pelatihan/edit/') . $row['id_pelatihan'] ?>" class="btn btn-info btn-sm"><i class="fas fa-pencil-alt"></i> Ubah</a>
                                         <a href="<?= base_url('pelatihan/delete/' . $row['id_pelatihan']) ?>" onclick="return confirm('Apa anda yakin ingin menghapus data pelatihan <?= $row['pelatihan'] ?>')" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i> Hapus</a>
                                         <a href="<?= base_url('peserta?pelatihan=') . $row['id_pelatihan'] ?>" class="btn btn-success btn-sm"><i class="fas fa-user"></i> Peserta</a>
                                     </td>

@@ -31,7 +31,7 @@
                                     <td><?= $row['nama'] ?></td>
                                     <td><?= $row['email'] ?></td>
                                     <td>
-                                        <a href="" class="btn btn-info btn-sm"><i class="fas fa-pencil-alt"></i> Ubah</a>
+                                        <a href="<?= base_url('user/edit/') . $row['id'] ?>" class="btn btn-info btn-sm"><i class="fas fa-pencil-alt"></i> Ubah</a>
                                         <a href="<?= base_url('user/delete/' . $row['id']) ?>" onclick="return confirm('Apa anda yakin ingin menghapus data user <?= $row['username'] ?>')" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i> Hapus</a>
                                     </td>
                                 </tr>

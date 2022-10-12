@@ -68,6 +68,45 @@ class User extends CI_Controller
             }
         }
     }
+    public function edit($id)
+    {
+        $this->form_validation->set_rules('username', 'Username', 'trim|required');
+        $this->form_validation->set_rules('password', 'Password', 'trim|required');
+        $this->form_validation->set_rules('retype_password', 'Password', 'trim|matches[password]');
+        $this->form_validation->set_rules('nama', 'Nama', 'trim|required');
+        $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
+
+
+        if ($this->form_validation->run() == FALSE) {
+            $data = [
+                'title'         => 'SI Dadu',
+                'page'          => 'User',
+                'sub_page'      => 'Edit',
+                'user'          => $this->user->getById($id),
+                'sidebar_nama'   => $this->login_nama,
+                'content'       => 'user/edit'
+            ];
+            $this->load->view('template/master', $data);
+        } else {
+
+            $password = $this->input->post('password');
+            $passwordHash = password_hash($password, PASSWORD_DEFAULT);
+            $data = [
+                'username'      => strtolower($this->input->post('username')),
+                'password'      => $passwordHash,
+                'nama'          => $this->input->post('nama'),
+                'email'          => $this->input->post('email'),
+            ];
+            $update = $this->user->update($data, $id);
+            if ($update > 0) {
+                alert('success', 'Berhasil update user');
+                redirect('user');
+            } else {
+                alert('danger', 'Terjadi kesalahan, silahkan hub admin / penanggung jawab');
+                redirect('user');
+            }
+        }
+    }
 
     public function delete($id)
     {
