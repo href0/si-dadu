@@ -43,10 +43,39 @@ class SatuanKerja  extends CI_Controller
             ];
             $insert =  $this->satuankerja->add($data);
             if ($insert > 0) {
-                $this->session->set_flashdata(
-                    'message',
-                    '<div class="alert alert-success" role="alert">Berhasil menambah satuan kerja</div>'
-                );
+                alert('success', 'Berhasil menambah satuan kerja');
+                redirect('satuankerja');
+            } else {
+                alert('danger', 'Gagal menambah, terjadi kesalahan. silahkan coba lagi');
+                redirect('satuankerja');
+            }
+        }
+    }
+
+    public function edit($id)
+    {
+        $this->form_validation->set_rules('satuan_kerja', 'Satuan Kerja', 'trim|required');
+
+        if ($this->form_validation->run() == FALSE) {
+            $data = [
+                'title'         => 'SI Dadu',
+                'page'          => 'Satuan Kerja',
+                'sidebar_nama'  => $this->login_nama,
+                'data'          => $this->satuankerja->get($id),
+                'sub_page'      => 'Edit',
+                'content'       => 'satuan_kerja/edit'
+            ];
+            $this->load->view('template/master', $data);
+        } else {
+            $data = [
+                'satuan_kerja'  => $this->input->post('satuan_kerja')
+            ];
+            $update = $this->satuankerja->update($data, $id);
+            if ($update > 0) {
+                alert('success', 'Berhasil update satuan kerja');
+                redirect('satuankerja');
+            } else {
+                alert('danger', 'Gagal update, terjadi kesalahan. silahkan coba lagi');
                 redirect('satuankerja');
             }
         }
@@ -56,16 +85,11 @@ class SatuanKerja  extends CI_Controller
     {
         $delete = $this->satuankerja->delete($id);
         if ($delete == true) {
-            $this->session->set_flashdata(
-                'message',
-                '<div class="alert alert-danger" role="alert">Berhasil menghapus data satuan kerja</div>'
-            );
+
+            alert('success', 'Berhasil menghapus data satuan kerja');
             redirect('satuankerja');
         } else {
-            $this->session->set_flashdata(
-                'message',
-                '<div class="alert alert-info" role="alert">Terjadi kesalahan pada server, silahkan hub admin</div>'
-            );
+            alert('danger', 'Terjadi kesalahan pada server, silahkan hub admin');
             redirect('satuankerja');
         }
     }

@@ -11,6 +11,7 @@ class Pelatihan extends CI_Controller
         is_logged_in();
         $this->load->model('model_pelatihan', 'pelatihan');
         $this->load->model('model_satuankerja', 'satuankerja');
+        $this->load->model('model_laporan', 'laporan');
         $this->login_nama = $this->session->userdata('auth')['nama'];
     }
 
@@ -43,22 +44,23 @@ class Pelatihan extends CI_Controller
             ];
             $this->load->view('template/master', $data);
         } else {
+
             $data = [
                 'id_kejuruan' => $this->input->post('kejuruan') ?? 1,
-                'pelatihan'   => $this->input->post('pelatihan')
+                'pelatihan'   => $this->input->post('pelatihan'),
+                'tgl_awal'   => $this->input->post('tgl_awal'),
+                'tgl_akhir'   => $this->input->post('tgl_akhir'),
+                'lokasi'   => $this->input->post('lokasi')
             ];
+
             $insert = $this->pelatihan->add($data);
             if ($insert > 0) {
-                $this->session->set_flashdata(
-                    'message',
-                    '<div class="alert alert-success" role="alert">Berhasil menambah data pelatihan</div>'
-                );
+
+                alert('success', 'Berhasil menambah data pelatihan');
                 redirect('pelatihan');
             } else {
-                $this->session->set_flashdata(
-                    'message',
-                    '<div class="alert alert-info" role="alert">Terjadi kesalahan pada server, silahkan hub admin</div>'
-                );
+
+                alert('danger', 'Terjadi kesalahan pada server, silahkan hub admin');
                 redirect('pelatihan');
             }
         }
@@ -67,17 +69,11 @@ class Pelatihan extends CI_Controller
     public function delete($id)
     {
         $delete = $this->pelatihan->delete($id);
-        if ($delete == true) {
-            $this->session->set_flashdata(
-                'message',
-                '<div class="alert alert-danger" role="alert">Berhasil menghapus data pelatihan</div>'
-            );
+        if ($delete > 0) {
+            alert('success', 'Berhasil menghapus data pelatihan');
             redirect('pelatihan');
         } else {
-            $this->session->set_flashdata(
-                'message',
-                '<div class="alert alert-info" role="alert">Terjadi kesalahan pada server, silahkan hub admin</div>'
-            );
+            alert('danger', 'Terjadi kesalahan pada server, silahkan hub admin');
             redirect('pelatihan');
         }
     }
@@ -89,7 +85,7 @@ class Pelatihan extends CI_Controller
             'page'          => 'Laporan Pelatihan',
             'sub_page'      => '',
             'sidebar_nama'   => $this->login_nama,
-            // 'table'         => $this->pelatihan->getAll(),
+            'table'         => $this->laporan->getAll(),
             'content'       => 'pelatihan/laporan'
         ];
         $this->load->view('template/master', $data);

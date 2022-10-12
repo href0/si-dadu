@@ -17,6 +17,9 @@
                                 <th>Satuan Kerja</th>
                                 <th>Kejuruan</th>
                                 <th>Pelatihan</th>
+                                <th>Tanggal Awal</th>
+                                <th>Tanggal Akhir</th>
+                                <th>Lokasi Pelathan</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
@@ -30,9 +33,13 @@
                                     <td><?= $row['satuan_kerja'] ?></td>
                                     <td><?= $row['kejuruan'] != 'Disnaker' ? $row['kejuruan'] : '' ?></td>
                                     <td><?= $row['pelatihan'] ?></td>
+                                    <td><?= date_format(new DateTime($row['tgl_awal']), 'd M Y') ?></td>
+                                    <td><?= date_format(new DateTime($row['tgl_akhir']), 'd M Y') ?></td>
+                                    <td><?= $row['lokasi'] ?></td>
                                     <td>
                                         <a href="" class="btn btn-info btn-sm"><i class="fas fa-pencil-alt"></i> Ubah</a>
                                         <a href="<?= base_url('pelatihan/delete/' . $row['id_pelatihan']) ?>" onclick="return confirm('Apa anda yakin ingin menghapus data pelatihan <?= $row['pelatihan'] ?>')" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i> Hapus</a>
+                                        <a href="<?= base_url('peserta?pelatihan=') . $row['id_pelatihan'] ?>" class="btn btn-success btn-sm"><i class="fas fa-user"></i> Peserta</a>
                                     </td>
                                 </tr>
                             <?php

@@ -10,9 +10,9 @@
   </div>
   <footer class="main-footer">
       <div class="float-right d-none d-sm-block">
-          <b>Version</b> 3.1.0
+          <b>Version</b> 1.0.0
       </div>
-      <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
+      <strong>Copyright &copy; <?= date('Y') ?> <a href="https://adminlte.io">Padaidi Initiative</a>.</strong> Kami tidak pernah meragukan client meskipun permintaannya aneh-aneh.
   </footer>
 
   <!-- Control Sidebar -->
@@ -57,7 +57,7 @@
   <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
 
 
-  <?php if (($page == 'Kejuruan' && $sub_page == 'Tambah' || ($page == 'Satuan Kerja' && $sub_page == 'Tambah'))) : ?>
+  <?php if (($page == 'Kejuruan' && ($sub_page == 'Tambah' || $sub_page == 'Edit') || ($page == 'Satuan Kerja' && ($sub_page == 'Tambah' || $sub_page == 'Edit')))) : ?>
       <script>
           $(function() {
               //   $.validator.setDefaults({
@@ -108,7 +108,6 @@
   <?php elseif (($page == 'Peserta' && $sub_page == 'Tambah') || ($page == 'Peserta' && $sub_page == 'Edit')) : ?>
       <script>
           $(function() {
-
               $('#form').validate({
                   rules: {
                       satuan_kerja: {
@@ -148,6 +147,15 @@
                           required: true,
                       },
                       detail_alamat: {
+                          required: true,
+                      },
+                      tgl_lahir: {
+                          required: true,
+                      },
+                      pendidikan_terakhir: {
+                          required: true,
+                      },
+                      tempat_lahir: {
                           required: true,
                       },
                   },
@@ -280,6 +288,26 @@
                           // console.log(result)
                           $('.pelatihan').show()
                           $('#pelatihan').html(result)
+
+                      }
+                  })
+              })
+
+              $("select#kecamatan").change(function() {
+                  //   return console.log($(this).children("option:selected").val())
+                  const selected = $(this).children("option:selected").val();
+                  const action = 'kelurahan'
+                  $.ajax({
+                      url: '<?= base_url('peserta/pilihkelurahan') ?>',
+                      data: {
+                          id_kecamatan: selected,
+                          action
+                      },
+                      type: 'post',
+                      success: function(result) {
+                          //   return console.log(result)
+                          //   $('.pelatihan').show()
+                          $('#kelurahan').html(result)
 
                       }
                   })

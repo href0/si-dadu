@@ -10,3 +10,13 @@ function is_logged_in()
         redirect('auth');
     }
 }
+
+function alert($type, $message)
+{
+    $ci = get_instance();
+
+    return $ci->session->set_flashdata(
+        'message',
+        '<div class="alert alert-' . $type . '" role="alert">' . $message . '</div>'
+    );
+}

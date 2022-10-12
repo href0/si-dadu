@@ -9,6 +9,7 @@ class Model_Pelatihan extends CI_Model
         return $this->db
             ->join('kejuruan', 'kejuruan.id_kejuruan = pelatihan.id_kejuruan')
             ->join('satuan_kerja', 'satuan_kerja.id_satuan_kerja = kejuruan.id_satuan_kerja')
+            ->order_by('')
             ->get('pelatihan')->result_array();
     }
 

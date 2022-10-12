@@ -32,17 +32,11 @@ class Auth extends CI_Controller
                     $this->session->set_userdata('auth', $dataSession);
                     redirect('dashboard');
                 } else {
-                    $this->session->set_flashdata(
-                        'message',
-                        '<div class="alert alert-danger" role="alert">Username atau password salah</div>'
-                    );
+                    alert('danger', 'Username atau password salah');
                     redirect('auth');
                 }
             } else {
-                $this->session->set_flashdata(
-                    'message',
-                    '<div class="alert alert-danger" role="alert">Username atau password salah</div>'
-                );
+                alert('danger', 'Username atau password salah');
                 redirect('auth');
             }
         }
@@ -51,6 +45,7 @@ class Auth extends CI_Controller
     public function logout()
     {
         $this->session->unset_userdata('auth');
+        alert('success', 'Berhasil logout');
         redirect('auth');
     }
 }

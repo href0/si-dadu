@@ -1,5 +1,11 @@
 <?= $this->session->flashdata('message') ?>
 <?php unset($_SESSION['message']) ?>
+<?php
+echo '<pre>';
+print_r($table);
+echo '</pre>';
+die;
+?>
 <div class="container-fluid">
     <div class="row">
         <div class="col-12">

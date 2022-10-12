@@ -11,13 +11,13 @@
                 <form action="<?= base_url('peserta/update_nilai/' . $peserta['id_peserta']) ?>" id="form_nilai" method="post" enctype="multipart/form-data">
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-md-6">
+                            <!-- <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="hasil_pelatihan">Hasil Pelatihan</label>
                                     <input type="text" value="<?= $peserta['hasil_pelatihan'] ?? 'Belum ada nilai' ?>" class="form-control" disabled>
 
                                 </div>
-                            </div>
+                            </div> -->
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="sertifikasi">Sertifikasi</label>
@@ -25,12 +25,12 @@
 
                                 </div>
                             </div>
-                            <div class="col-md-6">
+                            <!-- <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="penyerapan_lulusan">Penyerapan Lulusan</label>
                                     <input type="text" value="<?= $peserta['penyerapan_lulusan'] ?? 'Belum ada nilai' ?>" class="form-control" disabled>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                     <div class="card-footer">
@@ -112,6 +112,40 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
+                                    <label for="tgl_lahir">Tanggal Lahir</label>
+                                    <input type="date" name="tgl_lahir" value="<?= $peserta['tgl_lahir'] ?>" class="form-control<?= form_error('tgl_lahir') ? '  is-invalid' : '' ?>" id="tgl_lahir" placeholder="Masukkan tanggal lahir">
+                                    <?php if (form_error('tgl_lahir')) : ?>
+                                        <div class="invalid-feedback"><?= form_error('tgl_lahir') ?></div>
+                                    <?php endif ?>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="tempat_lahir">Tempat Lahir</label>
+                                    <input type="text" name="tempat_lahir" value="<?= $peserta['tempat_lahir'] ?>" class="form-control<?= form_error('tempat_lahir') ? '  is-invalid' : '' ?>" id="tempat_lahir" placeholder="Masukkan tempat lahir">
+                                    <?php if (form_error('tempat_lahir')) : ?>
+                                        <div class="invalid-feedback"><?= form_error('tempat_lahir') ?></div>
+                                    <?php endif ?>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="pendidikan_terakhir">Pendidikan Terakhir</label>
+                                    <select class="form-control" name="pendidikan_terakhir">
+                                        <option value="" selected="true" disabled>-- Pilih Pendidikan <?= $peserta['pendidikan_terakhir'] ?> --</option>
+                                        <option <?= $peserta['pendidikan_terakhir'] == 'SD' ? 'selected' : '' ?> value="SD">SD</option>
+                                        <option <?= $peserta['pendidikan_terakhir'] == 'SMP' ? 'selected' : '' ?> value="SMP">SMP</option>
+                                        <option <?= $peserta['pendidikan_terakhir'] == 'SMA' ? 'selected' : '' ?> value="SMA">SMA</option>
+                                        <option <?= $peserta['pendidikan_terakhir'] == 'SMK' ? 'selected' : '' ?> value="SMK">SMK</option>
+                                        <option <?= $peserta['pendidikan_terakhir'] == 'D3' ? 'selected' : '' ?> value="D3">D3</option>
+                                        <option <?= $peserta['pendidikan_terakhir'] == 'S1' ? 'selected' : '' ?> value="S1">S1</option>
+                                        <!-- <option value="Tidak Uji Kompetensi">Tidak Uji Kompetensi</option>
+                                        <option value="Lainnya">Lainnya</option> -->
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
                                     <label for="jenis_kelamin">Jenis Kelamin</label>
                                     <div class="col-sm-6">
                                         <div class="form-group clearfix">
@@ -132,25 +166,29 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="kecamatan">Kecamatan</label>
-                                    <input type="text" name="kecamatan" value="<?= $peserta['kecamatan'] ?>" class="form-control<?= form_error('kecamatan') ? '  is-invalid' : '' ?>" id="kecamatan" placeholder="Masukkan kecamatan">
-                                    <?php if (form_error('kecamatan')) : ?>
-                                        <div class="invalid-feedback"><?= form_error('kecamatan') ?></div>
-                                    <?php endif ?>
+                                    <select class="form-control<?= form_error('kecamatan') ? '  is-invalid' : '' ?>" id="kecamatan" name="kecamatan">
+                                        <option value="" selected="true" disabled>-- Pilih Kecamatan --</option>
+                                        <?php foreach ($kecamatan as $row) : ?>
+                                            <option <?= $row['kecamatan'] == $peserta['kecamatan'] ? 'selected' : '' ?> value="<?= $row['id_kecamatan'] ?>"><?= $row['kecamatan'] ?></option>
+                                        <?php endforeach; ?>
+                                    </select>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="kelurahan">Kelurahan</label>
-                                    <input type="text" name="kelurahan" value="<?= $peserta['kelurahan'] ?>" class="form-control<?= form_error('kelurahan') ? '  is-invalid' : '' ?>" id="kelurahan" placeholder="Masukkan kelurahan">
-                                    <?php if (form_error('kelurahan')) : ?>
-                                        <div class="invalid-feedback"><?= form_error('kelurahan') ?></div>
-                                    <?php endif ?>
+                                    <select class="form-control<?= form_error('kelurahan') ? '  is-invalid' : '' ?>" id="kelurahan" name="kelurahan">
+                                        <?php foreach ($kelurahan as $row) : ?>
+                                            <option <?= $row['kelurahan'] == $peserta['kelurahan'] ? 'selected' : '' ?> value="<?= $row['id_kelurahan'] ?>"><?= $row['kelurahan'] ?></option>
+                                        <?php endforeach; ?>
+
+                                    </select>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="rt">RW/Dusun</label>
-                                    <input type="text" name="rwdusun" value="<?= $peserta['rw-dusun'] ?>" class="form-control<?= form_error('rwdusun') ? '  is-invalid' : '' ?>" id="rwdusun" placeholder="Masukkan RW/Dusun">
+                                    <label for="rt">RW</label>
+                                    <input type="text" name="rwdusun" value="<?= $peserta['rw-dusun'] ?>" class="form-control<?= form_error('rwdusun') ? '  is-invalid' : '' ?>" id="rwdusun" placeholder="007">
                                     <?php if (form_error('rwdusun')) : ?>
                                         <div class="invalid-feedback"><?= form_error('rwdusun') ?></div>
                                     <?php endif ?>
@@ -159,7 +197,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="rt">RT</label>
-                                    <input type="text" name="rt" value="<?= $peserta['rt'] ?>" class="form-control<?= form_error('rt') ? '  is-invalid' : '' ?>" id="rt" placeholder="Masukkan RT">
+                                    <input type="text" name="rt" value="<?= $peserta['rt'] ?>" class="form-control<?= form_error('rt') ? '  is-invalid' : '' ?>" id="rt" placeholder="008">
                                     <?php if (form_error('rt')) : ?>
                                         <div class="invalid-feedback"><?= form_error('rt') ?></div>
                                     <?php endif ?>

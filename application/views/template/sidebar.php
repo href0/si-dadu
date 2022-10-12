@@ -30,14 +30,14 @@
                         </p>
                     </a>
                 </li>
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                     <a href="<?= base_url('pelatihan/laporan') ?>" class="nav-link<?= $page == 'Laporan Pelatihan' ? ' active' : '' ?>">
                         <i class="nav-icon fas fa-users"></i>
                         <p>
                             Laporan Pelatihan
                         </p>
                     </a>
-                </li>
+                </li> -->
                 <li class="nav-item">
                     <a href="<?= base_url('peserta') ?>" class="nav-link<?= $page == 'Peserta' ? ' active' : '' ?>">
                         <i class="nav-icon fas fa-users"></i>

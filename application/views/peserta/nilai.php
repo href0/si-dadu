@@ -8,7 +8,7 @@
                 <form action="<?= base_url('peserta/nilai/' . $peserta['id_peserta']) ?>" id="form_nilai" method="post" enctype="multipart/form-data">
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-md-6">
+                            <!-- <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="hasil_pelatihan">Hasil Pelatihan</label>
                                     <select class="form-control" name="hasil_pelatihan">
@@ -17,21 +17,21 @@
                                         <option value="Tidak Lulus">Tidak Lulus</option>
                                     </select>
                                 </div>
-                            </div>
+                            </div> -->
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="sertifikasi">Sertifikasi</label>
                                     <select class="form-control" name="sertifikasi">
                                         <option value="" selected="true" disabled>-- Pilih Sertifikasi --</option>
-                                        <option value="Kompeten">Kompeten</option>
-                                        <option value="Tidak Kompeten">Tidak Kompeten</option>
-                                        <option value="Tidak Uji Kompetensi">Tidak Uji Kompetensi</option>
-                                        <option value="Lainnya">Lainnya</option>
+                                        <option value="K">Kompeten</option>
+                                        <option value="BK">Belum Kompeten</option>
+                                        <!-- <option value="Tidak Uji Kompetensi">Tidak Uji Kompetensi</option>
+                                        <option value="Lainnya">Lainnya</option> -->
                                     </select>
 
                                 </div>
                             </div>
-                            <div class="col-md-6">
+                            <!-- <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="penyerapan_lulusan">Penyerapan Lulusan</label>
                                     <select class="form-control" id="satker" name="penyerapan_lulusan">
@@ -41,7 +41,7 @@
                                     </select>
 
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
 
                     </div>
